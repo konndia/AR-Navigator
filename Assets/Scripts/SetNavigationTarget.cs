@@ -15,6 +15,12 @@ public class SetNavigationTarget : MonoBehaviour
 
     private bool lineToggle = false;
 
+    private void Start()
+    {
+        path = new NavMeshPath();
+        line = transform.GetComponent<LineRenderer>();
+    }
+
     private void Update()
     {
         if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began))
