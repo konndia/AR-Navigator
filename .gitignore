@@ -75,6 +75,7 @@ crashlytics-build.properties
 # ===================================== #
 ExportedObj/
 *.svd
+*.vsconfig
 *.userprefs
 *.csproj
 *.pidb
