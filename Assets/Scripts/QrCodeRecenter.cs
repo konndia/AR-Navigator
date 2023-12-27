@@ -25,7 +25,7 @@ public class QrCodeRecenter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SetQrCodeRecenterTarget("Canteen");
+            SetQrCodeRecenterTarget("FoodMachine");
         }
     }
 
@@ -50,6 +50,8 @@ public class QrCodeRecenter : MonoBehaviour
         {
             inputRect = new RectInt(0, 0, image.width, image.height),
 
+            outputDimensions = new Vector2Int(image.width / 2, image.height / 2),
+
             outputFormat = TextureFormat.RGBA32,
 
             transformation = XRCpuImage.Transformation.MirrorY
@@ -57,7 +59,7 @@ public class QrCodeRecenter : MonoBehaviour
 
         int size = image.GetConvertedDataSize(conversionParams);
         var buffer = new NativeArray<byte>(size, Allocator.Temp);
-        image.Convert(conversionParams, buffer );
+        image.Convert(conversionParams, buffer);
         image.Dispose();
 
         cameraImageTexture = new Texture2D(
@@ -88,5 +90,10 @@ public class QrCodeRecenter : MonoBehaviour
             sessionOrigin.transform.position = currentTarget.PositionObject.transform.position;
             sessionOrigin.transform.rotation = currentTarget.PositionObject.transform.rotation;
         }
+    }
+
+    public void ChangeActiveFloor(string floorEntrance)
+    {
+        SetQrCodeRecenterTarget(floorEntrance);
     }
 }
